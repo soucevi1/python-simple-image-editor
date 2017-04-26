@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>964</width>
+    <height>686</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Superawesome Image Editor</string>
+  </property>
+  <property name="windowOpacity">
+   <double>0.000000000000000</double>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>11</y>
+      <width>951</width>
+      <height>641</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>964</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
+   </widget>
+   <widget class="QMenu" name="menuAdjust">
+    <property name="title">
+     <string>Adjust</string>
+    </property>
+    <widget class="QMenu" name="menuRotate">
+     <property name="title">
+      <string>Rotate</string>
+     </property>
+     <addaction name="actionRotateLeft"/>
+     <addaction name="actionRotateRight"/>
+    </widget>
+    <widget class="QMenu" name="menuFlip">
+     <property name="title">
+      <string>Flip</string>
+     </property>
+     <addaction name="actionFlipVerticalAxis"/>
+     <addaction name="actionFlipHorizontalAxis"/>
+    </widget>
+    <widget class="QMenu" name="menuColorFilters">
+     <property name="title">
+      <string>Color Filters</string>
+     </property>
+     <addaction name="actionColorFiltersGreyscale"/>
+     <addaction name="actionColorFiltersInvert"/>
+     <addaction name="actionColorFiltersCustom"/>
+    </widget>
+    <addaction name="actionResize"/>
+    <addaction name="menuRotate"/>
+    <addaction name="menuFlip"/>
+    <addaction name="actionBrightness"/>
+    <addaction name="actionConvolution"/>
+    <addaction name="menuColorFilters"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuAdjust"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="text">
+    <string>Save As</string>
+   </property>
+  </action>
+  <action name="actionResize">
+   <property name="text">
+    <string>Resize</string>
+   </property>
+  </action>
+  <action name="actionRotateLeft">
+   <property name="text">
+    <string>Left</string>
+   </property>
+  </action>
+  <action name="actionRotateRight">
+   <property name="text">
+    <string>Right</string>
+   </property>
+  </action>
+  <action name="actionInvert_Colors">
+   <property name="text">
+    <string>Invert Colors</string>
+   </property>
+  </action>
+  <action name="actionFlipVerticalAxis">
+   <property name="text">
+    <string>Vertical Axis</string>
+   </property>
+  </action>
+  <action name="actionFlipHorizontalAxis">
+   <property name="text">
+    <string>Horizontal Axis</string>
+   </property>
+  </action>
+  <action name="actionGreyscale">
+   <property name="text">
+    <string>Greyscale</string>
+   </property>
+  </action>
+  <action name="actionBrightness">
+   <property name="text">
+    <string>Brightness</string>
+   </property>
+  </action>
+  <action name="actionConvolution">
+   <property name="text">
+    <string>Convolution</string>
+   </property>
+  </action>
+  <action name="actionColorFiltersGreyscale">
+   <property name="text">
+    <string>Greyscale</string>
+   </property>
+  </action>
+  <action name="actionColorFiltersInvert">
+   <property name="text">
+    <string>Invert</string>
+   </property>
+  </action>
+  <action name="actionColorFiltersCustom">
+   <property name="text">
+    <string>Custom</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
