@@ -13,6 +13,7 @@ window = editor.Editor()
 window.show()
 fileOpen = window.actionOpen
 fileOpen.triggered.connect(window.open_file)
+window.show_image()
 
 
 

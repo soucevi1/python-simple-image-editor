@@ -17,14 +17,17 @@
    <double>0.000000000000000</double>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGraphicsView" name="graphicsView">
+   <widget class="QLabel" name="labelImage">
     <property name="geometry">
      <rect>
-      <x>5</x>
-      <y>11</y>
-      <width>951</width>
-      <height>641</height>
+      <x>30</x>
+      <y>30</y>
+      <width>68</width>
+      <height>17</height>
      </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>

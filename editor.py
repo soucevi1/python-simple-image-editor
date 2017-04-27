@@ -4,6 +4,7 @@ import sys
 from PyQt4.QtGui import *
 from PyQt4 import uic, QtGui
 from PIL import Image
+from PIL.ImageQt import ImageQt
 
 # zobrazeni hlavniho okna programu
 qtCreatorFile = "main_window.ui"
@@ -15,13 +16,24 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         QtGui.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
-        self.__image_file = None
+        self.__image_file = Image.new("L", (1,1))
+        self.__qimage = None
  
     def open_file(self):        
+        file_dialog = QFileDialog(self)
+        file_dialog.setNameFilters(["Images (*.bmp *.png *.jpg)"])
         w = QWidget()
-        filename = QFileDialog.getOpenFileName(w, 'Open File', '~')
+        filename = file_dialog.getOpenFileName(w, 'Open File', '~')
         self.__image_file = Image.open(filename)
-        print("opening " + filename)
+
+    def show_image(self):
+        self.PILimage_Qimage()
+        self.labelImage.setPixmap(self.__qimage)
+        self.labelImage.show()
+
+    def PILimage_Qimage(self):
+        qim = ImageQt(self.__image_file)
+        self.__qimage = QtGui.QPixmap.fromImage(qim)
 
     @property
     def image_file(self): 
