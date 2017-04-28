@@ -5,6 +5,7 @@ from PyQt4.QtGui import *
 from PyQt4 import uic, QtGui
 from PIL import Image
 from PIL.ImageQt import ImageQt
+import turn
 
 # zobrazeni hlavniho okna programu
 qtCreatorFile = "main_window.ui"
@@ -16,6 +17,7 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         QtGui.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
+        self.__filename = None
         self.__image_file = None
         self.__qimage = None
  
@@ -23,8 +25,8 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         file_dialog = QFileDialog(self)
         file_dialog.setNameFilters(["Images (*.bmp *.png *.jpg)"])
         w = QWidget()
-        filename = file_dialog.getOpenFileName(w, 'Open File', '~')
-        self.__image_file = Image.open(filename)
+        self.__filename = file_dialog.getOpenFileName(w, 'Open File', '~')
+        self.__image_file = Image.open(self.__filename)
         self.show_image()
 
     def show_image(self):
@@ -38,6 +40,10 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         qpixmap = QtGui.QPixmap(w,h)
         pix = QtGui.QPixmap.fromImage(self.__qimage)
         return pix
+
+    def turn_left(self):
+       	self.__image_file = turn.turn_image_left(self.__image_file)
+        self.show_image()
 
     @property
     def image_file(self): 
