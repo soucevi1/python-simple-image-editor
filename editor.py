@@ -6,6 +6,7 @@ from PyQt4 import uic, QtGui
 from PIL import Image
 from PIL.ImageQt import ImageQt
 import turn
+import flip
 
 # zobrazeni hlavniho okna programu
 qtCreatorFile = "main_window.ui"
@@ -48,7 +49,15 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
     def turn_right(self):
         self.__image_file = turn.turn_image_right(self.__image_file)
         self.show_image()
+        
+    def flip_horizontal(self):
+        self.__image_file = flip.flip_horizontal(self.__image_file)
+        self.show_image()
 
+    def flip_vertical(self):
+        self.__image_file = flip.flip_vertical(self.__image_file)
+        self.show_image()
+        
     @property
     def image_file(self): 
         return self.__image_file
