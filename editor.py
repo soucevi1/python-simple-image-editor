@@ -7,6 +7,7 @@ from PIL import Image
 from PIL.ImageQt import ImageQt
 import turn
 import flip
+import color_filters as cf
 
 # zobrazeni hlavniho okna programu
 qtCreatorFile = "main_window.ui"
@@ -56,6 +57,10 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
 
     def flip_vertical(self):
         self.__image_file = flip.flip_vertical(self.__image_file)
+        self.show_image()
+        
+    def filter_greyscale(self):
+        self.__image_file = cf.greyscale(self.__image_file)
         self.show_image()
         
     @property

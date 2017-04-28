@@ -16,7 +16,7 @@ window.actionRotateLeft.triggered.connect(window.turn_left)
 window.actionRotateRight.triggered.connect(window.turn_right)
 window.actionFlipHorizontalAxis.triggered.connect(window.flip_horizontal)
 window.actionFlipVerticalAxis.triggered.connect(window.flip_vertical)
-
+window.actionColorFiltersGreyscale.triggered.connect(window.filter_greyscale)
 
 sys.exit(app.exec_())
 
