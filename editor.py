@@ -44,6 +44,10 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
     def turn_left(self):
        	self.__image_file = turn.turn_image_left(self.__image_file)
         self.show_image()
+    
+    def turn_right(self):
+        self.__image_file = turn.turn_image_right(self.__image_file)
+        self.show_image()
 
     @property
     def image_file(self): 
