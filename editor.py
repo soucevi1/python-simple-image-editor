@@ -16,7 +16,7 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         QtGui.QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
-        self.__image_file = Image.new("L", (1,1))
+        self.__image_file = None
         self.__qimage = None
  
     def open_file(self):        
@@ -25,15 +25,19 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         w = QWidget()
         filename = file_dialog.getOpenFileName(w, 'Open File', '~')
         self.__image_file = Image.open(filename)
+        self.show_image()
 
     def show_image(self):
-        self.PILimage_Qimage()
-        self.labelImage.setPixmap(self.__qimage)
-        self.labelImage.show()
+        pixmap = self.pil2qpixmap()
+        self.labelImage.setPixmap(pixmap)
 
-    def PILimage_Qimage(self):
-        qim = ImageQt(self.__image_file)
-        self.__qimage = QtGui.QPixmap.fromImage(qim)
+    def pil2qpixmap(self):
+        w, h = self.__image_file.size
+        data = self.__image_file.tobytes("raw", "BGRX")
+        self.__qimage = QtGui.QImage(data, w, h, QtGui.QImage.Format_RGB32)
+        qpixmap = QtGui.QPixmap(w,h)
+        pix = QtGui.QPixmap.fromImage(self.__qimage)
+        return pix
 
     @property
     def image_file(self): 

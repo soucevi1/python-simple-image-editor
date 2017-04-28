@@ -11,9 +11,8 @@ import editor
 app = QtGui.QApplication(sys.argv)
 window = editor.Editor()
 window.show()
-fileOpen = window.actionOpen
-fileOpen.triggered.connect(window.open_file)
-window.show_image()
+window.actionOpen.triggered.connect(window.open_file)
+# window.show_image()
 
 
 
