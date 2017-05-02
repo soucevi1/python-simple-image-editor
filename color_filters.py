@@ -13,6 +13,13 @@ def greyscale(img):
     return img_out
     
     
+def invert(img):
+    data = np.asarray(img)
+    data_out = 255 - data
+    img_out = Image.fromarray(data_out, 'RGB')
+    return img_out
+
+    
 # We need to convert Greyscale to RGB, so that it is compatible with other Editor's functions
 # source: http://www.socouldanyone.com/2013/03/converting-grayscale-to-rgb-with-numpy.html    
 def to_RGB(img):

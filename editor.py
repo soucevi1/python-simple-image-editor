@@ -7,6 +7,7 @@ from PIL import Image
 from PIL.ImageQt import ImageQt
 import turn
 import flip
+import brightness
 import color_filters as cf
 
 # zobrazeni hlavniho okna programu
@@ -61,6 +62,14 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         
     def filter_greyscale(self):
         self.__image_file = cf.greyscale(self.__image_file)
+        self.show_image()
+        
+    def filter_invert(self):
+        self.__image_file = cf.invert(self.__image_file)
+        self.show_image()
+        
+    def brightness(self):
+        self.__image_file = brightness.brightness(self.__image_file)
         self.show_image()
         
     @property
