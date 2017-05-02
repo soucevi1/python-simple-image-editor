@@ -8,6 +8,7 @@ from PIL.ImageQt import ImageQt
 import turn
 import flip
 import brightness
+import brightness_editor as be
 import color_filters as cf
 
 # zobrazeni hlavniho okna programu
@@ -69,7 +70,9 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         self.show_image()
         
     def brightness(self):
-        self.__image_file = brightness.brightness(self.__image_file)
+        brEdit = brightness.Brightness()
+        brEdit.brightness_initialize(self.__image_file)
+        self.__image_file = brEdit.image_data
         self.show_image()
         
     @property

@@ -15,6 +15,4 @@ class Brightness_editor(QtGui.QDialog, Ui_Dialog):
         QtGui.QDialog.__init__(self)
         Ui_Dialog.__init__(self)
         self.setupUi(self)
-        self.__filename = None
-        self.__image_file = None
-        self.__qimage = None
+        self.__image_data = None
