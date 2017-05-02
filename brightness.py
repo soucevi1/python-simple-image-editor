@@ -17,11 +17,11 @@ class Brightness:
 
     def brightness_initialize(self, img):
         self.image_data = img
-        brightness_window = be.Brightness_editor()
-        self.slider = brightness_window.horizontalBrightnessSlider 
+        self.brightness_window = be.Brightness_editor()
+        self.slider = self.brightness_window.horizontalBrightnessSlider 
         self.value = self.slider.valueChanged.connect(self.value_change)
-        brightness_window.brOKButton.clicked.connect(self.brightness_adjust)
-        brightness_window.exec_()
+        self.brightness_window.brOKButton.clicked.connect(self.brightness_adjust)
+        self.brightness_window.exec_()
         
         
     def value_change(self):
@@ -44,3 +44,4 @@ class Brightness:
         data_out = np.asarray(data_out, dtype=np.uint8)
         img_out = Image.fromarray(data_out, 'RGB')
         self.image_data = img_out
+        self.brightness_window.accept()
