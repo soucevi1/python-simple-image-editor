@@ -19,6 +19,7 @@ window.actionFlipVerticalAxis.triggered.connect(window.flip_vertical)
 window.actionColorFiltersGreyscale.triggered.connect(window.filter_greyscale)
 window.actionColorFiltersInvert.triggered.connect(window.filter_invert)
 window.actionBrightness.triggered.connect(window.brightness)
+window.actionResize.triggered.connect(window.shrink)
 
 sys.exit(app.exec_())
 

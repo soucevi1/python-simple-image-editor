@@ -9,6 +9,8 @@ import turn
 import flip
 import brightness
 import brightness_editor as be
+import shrink
+import shrink_editor as se
 import color_filters as cf
 
 # zobrazeni hlavniho okna programu
@@ -73,6 +75,12 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         brEdit = brightness.Brightness()
         brEdit.brightness_initialize(self.__image_file)
         self.__image_file = brEdit.image_data
+        self.show_image()
+        
+    def shrink(self):
+        shEdit = shrink.Shrink()
+        shEdit.shrink_initialize(self.__image_file)
+        self.__image_file = shEdit.image_data
         self.show_image()
         
     @property
