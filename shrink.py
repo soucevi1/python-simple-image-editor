@@ -23,7 +23,7 @@ class Shrink:
         self.image_data = img
         self.shrink_window = se.Shrink_editor()
 
-        self.validator = QtGui.QIntValidator(1, 100)
+        self.validator = QtGui.QIntValidator(1, 99)
         self.numeratorLine = self.shrink_window.resizeNumerator
         self.denominatorLine = self.shrink_window.resizeDenominator
         self.numeratorLine.setValidator(self.validator)
@@ -50,8 +50,53 @@ class Shrink:
 
     def shrink_adjust(self):
         img = self.image_data
-        data = np.asarray(img) 
-        data_out = data[::2, ::2, :] #zmenseni
+        data = np.asarray(img)
+        rows, cols, colors = data.shape
+        resRows = []
+        resCols = []
+        
+        ctr = 0
+        for i in range(rows):
+            if ctr < self.num:
+                resRows.append(i)
+            ctr = (ctr+1) % self.denom
+        ctr = 0
+        for i in range(cols):
+            if ctr < self.num:
+                resCols.append(i)
+            ctr = (ctr+1) % self.denom    
+        
+        data_out = np.empty( (len(resRows), len(resCols), colors), dtype = np.uint8 )
+
+        for i in range(len(resRows)):
+            for j in range(len(resCols)):
+                data_out[i, j, :] = data[resRows[i], resCols[j], :]
+
         data_out = np.asarray(data_out, dtype=np.uint8)
-        img_out = Image.fromarray(data_out, 'RGB')
-        return img_out
+        self.image_data = Image.fromarray(data_out, 'RGB')
+        self.shrink_window.accept()
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
