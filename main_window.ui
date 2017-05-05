@@ -18,11 +18,8 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="0" column="1">
      <layout class="QGridLayout" name="gridLayout_2">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetMaximumSize</enum>
-      </property>
       <item row="0" column="0">
        <widget class="QLabel" name="labelImage">
         <property name="text">
@@ -81,8 +78,8 @@
      <addaction name="actionColorFiltersCustom"/>
     </widget>
     <addaction name="actionResize"/>
-    <addaction name="menuRotate"/>
     <addaction name="menuFlip"/>
+    <addaction name="menuRotate"/>
     <addaction name="actionBrightness"/>
     <addaction name="actionConvolution"/>
     <addaction name="menuColorFilters"/>
@@ -148,7 +145,7 @@
   </action>
   <action name="actionConvolution">
    <property name="text">
-    <string>Convolution</string>
+    <string>Sharpen Edges</string>
    </property>
   </action>
   <action name="actionColorFiltersGreyscale">

@@ -25,7 +25,7 @@ class Convolution:
         self.image_data = img
         self.conv_window = ce.Convolution_editor()
 
-        self.validator = QtGui.QDoubleValidator(-99, 99, 0)
+        self.validator = QtGui.QDoubleValidator(-99, 99, 2)
         
         self.maskLine.append(self.conv_window.convMask1)
         self.maskLine.append(self.conv_window.convMask2)
@@ -40,9 +40,81 @@ class Convolution:
         for i in range(9):
             self.maskLine[i].setValidator(self.validator)
         
+        self.conv_window.sharpenButton.clicked.connect(self.setSharpen)
+        self.conv_window.simpleEdgeButton.clicked.connect(self.setSimpleEdge)
+        self.conv_window.edgeButton.clicked.connect(self.setEdge)
+        self.conv_window.blurButton.clicked.connect(self.setBlur)
+        self.conv_window.excessiveButton.clicked.connect(self.setExcessive)
+        self.conv_window.embossButton.clicked.connect(self.setEmboss)
+        
         self.conv_window.convOKButton.clicked.connect(self.convolution_adjust)
         self.conv_window.exec_()
   
+    def setSharpen(self):
+        self.maskLine[0].setText("0")
+        self.maskLine[1].setText("-1")
+        self.maskLine[2].setText("0")
+        self.maskLine[3].setText("-1")
+        self.maskLine[4].setText("5")
+        self.maskLine[5].setText("-1")
+        self.maskLine[6].setText("0")
+        self.maskLine[7].setText("-1")
+        self.maskLine[8].setText("0")
+
+    def setSimpleEdge(self):
+        self.maskLine[0].setText("0")
+        self.maskLine[1].setText("1")
+        self.maskLine[2].setText("0")
+        self.maskLine[3].setText("1")
+        self.maskLine[4].setText("-4")
+        self.maskLine[5].setText("1")
+        self.maskLine[6].setText("0")
+        self.maskLine[7].setText("1")
+        self.maskLine[8].setText("0")
+        
+    def setEdge(self):
+        self.maskLine[0].setText("1")
+        self.maskLine[1].setText("1")
+        self.maskLine[2].setText("1")
+        self.maskLine[3].setText("1")
+        self.maskLine[4].setText("-8")
+        self.maskLine[5].setText("1")
+        self.maskLine[6].setText("1")
+        self.maskLine[7].setText("1")
+        self.maskLine[8].setText("1")
+        
+    def setBlur(self):
+        self.maskLine[0].setText("0")
+        self.maskLine[1].setText("0.2")
+        self.maskLine[2].setText("0")
+        self.maskLine[3].setText("0.2")
+        self.maskLine[4].setText("0.2")
+        self.maskLine[5].setText("0.2")
+        self.maskLine[6].setText("0")
+        self.maskLine[7].setText("0.2")
+        self.maskLine[8].setText("0")
+        
+    def setExcessive(self):
+        self.maskLine[0].setText("1")
+        self.maskLine[1].setText("1")
+        self.maskLine[2].setText("1")
+        self.maskLine[3].setText("1")
+        self.maskLine[4].setText("-7")
+        self.maskLine[5].setText("1")
+        self.maskLine[6].setText("1")
+        self.maskLine[7].setText("1")
+        self.maskLine[8].setText("1")
+        
+    def setEmboss(self):
+        self.maskLine[0].setText("-1")
+        self.maskLine[1].setText("-1")
+        self.maskLine[2].setText("0")
+        self.maskLine[3].setText("-1")
+        self.maskLine[4].setText("0")
+        self.maskLine[5].setText("1")
+        self.maskLine[6].setText("0")
+        self.maskLine[7].setText("1")
+        self.maskLine[8].setText("1")        
 
     def convolution_adjust(self):
         img = self.image_data

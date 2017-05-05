@@ -6,17 +6,17 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>595</width>
     <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Convolution</string>
   </property>
   <widget class="QPushButton" name="convOKButton">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>480</x>
      <y>260</y>
      <width>99</width>
      <height>27</height>
@@ -39,7 +39,7 @@
     <string>5</string>
    </property>
    <property name="maxLength">
-    <number>3</number>
+    <number>4</number>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -58,7 +58,7 @@
     <string>0</string>
    </property>
    <property name="maxLength">
-    <number>3</number>
+    <number>4</number>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -77,7 +77,7 @@
     <string>0</string>
    </property>
    <property name="maxLength">
-    <number>3</number>
+    <number>4</number>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -96,7 +96,7 @@
     <string>0</string>
    </property>
    <property name="maxLength">
-    <number>3</number>
+    <number>4</number>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -115,7 +115,7 @@
     <string>0</string>
    </property>
    <property name="maxLength">
-    <number>3</number>
+    <number>4</number>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -134,7 +134,7 @@
     <string>-1</string>
    </property>
    <property name="maxLength">
-    <number>3</number>
+    <number>4</number>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -153,7 +153,7 @@
     <string>-1</string>
    </property>
    <property name="maxLength">
-    <number>3</number>
+    <number>4</number>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -172,7 +172,7 @@
     <string>-1</string>
    </property>
    <property name="maxLength">
-    <number>3</number>
+    <number>4</number>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -191,7 +191,7 @@
     <string>-1</string>
    </property>
    <property name="maxLength">
-    <number>3</number>
+    <number>4</number>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -208,6 +208,87 @@
    </property>
    <property name="text">
     <string>Enter the convolution mask:</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="blurButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>130</y>
+     <width>117</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Blur</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="simpleEdgeButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>90</y>
+     <width>191</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Simple Edge Detection</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="edgeButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>110</y>
+     <width>151</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Edge Detection</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="sharpenButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>70</y>
+     <width>151</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Sharpen</string>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="excessiveButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>150</y>
+     <width>151</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Excessive Edges</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="embossButton">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>170</y>
+     <width>151</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Emboss</string>
    </property>
   </widget>
  </widget>

@@ -73,6 +73,12 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         self.__image_file = cf.invert(self.__image_file)
         self.show_image()
         
+    def filter_custom(self):
+        cfCustomEdit = cf.Custom()
+        cfCustomEdit.custom_initialize(self.__image_file)
+        self.__image_file = cfCustomEdit.image_data
+        self.show_image()
+        
     def brightness(self):
         brEdit = brightness.Brightness()
         brEdit.brightness_initialize(self.__image_file)
