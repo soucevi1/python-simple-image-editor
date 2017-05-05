@@ -20,6 +20,7 @@ window.actionColorFiltersGreyscale.triggered.connect(window.filter_greyscale)
 window.actionColorFiltersInvert.triggered.connect(window.filter_invert)
 window.actionBrightness.triggered.connect(window.brightness)
 window.actionResize.triggered.connect(window.shrink)
+window.actionConvolution.triggered.connect(window.convolution)
 
 sys.exit(app.exec_())
 

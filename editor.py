@@ -11,6 +11,8 @@ import brightness
 import brightness_editor as be
 import shrink
 import shrink_editor as se
+import convolution
+import convolution_editor as ce
 import color_filters as cf
 
 # zobrazeni hlavniho okna programu
@@ -81,6 +83,12 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         shEdit = shrink.Shrink()
         shEdit.shrink_initialize(self.__image_file)
         self.__image_file = shEdit.image_data
+        self.show_image()
+        
+    def convolution(self):
+        convEdit = convolution.Convolution()
+        convEdit.convolution_initialize(self.__image_file)
+        self.__image_file = convEdit.image_data
         self.show_image()
         
     @property

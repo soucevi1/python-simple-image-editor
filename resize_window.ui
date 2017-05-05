@@ -83,11 +83,11 @@
      <x>20</x>
      <y>40</y>
      <width>171</width>
-     <height>71</height>
+     <height>111</height>
     </rect>
    </property>
    <property name="text">
-    <string>Enter a fraction that will represent new size of the image (1/1 is the original size):</string>
+    <string>New picture will be created using the first &lt;numerator&gt; pixels out of every group of &lt;denominator&gt; pixels (1/1 is the original size):</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
