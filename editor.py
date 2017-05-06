@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import sys
 from PyQt4.QtGui import *
 from PyQt4 import uic, QtGui
 from PIL import Image
@@ -8,12 +7,8 @@ from PIL.ImageQt import ImageQt
 import turn
 import flip
 import brightness
-import brightness_editor as be
 import shrink
-import shrink_editor as se
 import convolution
-import convolution_editor as ce
-import crop_editor as cropEd
 import crop
 import color_filters as cf
 
@@ -30,15 +25,26 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         self.__filename = None
         self.__image_file = None
         self.__qimage = None
+        self.filters = 'Image files (*.bmp *.png *.jpg)'        
  
     def open_file(self):        
         file_dialog = QFileDialog(self)
-        file_dialog.setNameFilters(["Images (*.bmp *.png *.jpg)"])
-        w = QWidget()
-        self.__filename = file_dialog.getOpenFileName(w, 'Open File', '~')
+        self.__filename = file_dialog.getOpenFileName(None, 'Open File', '', self.filters)
         if self.__filename != '':
             self.__image_file = Image.open(self.__filename)
+            self.__format = self.__image_file.format
             self.show_image()
+
+    def save_file(self):
+        if self.__image_file != None:
+            self.__image_file.save(self.__filename, self.__format)
+            
+    def save_file_as(self):
+        if self.__image_file != None:
+            file_dialog = QFileDialog(self)
+            self.__filename = file_dialog.getSaveFileName(None, 'Save File As...', '', self.filters)
+            if self.__filename != '':
+                self.__image_file.save(self.__filename, self.__format)
 
     def show_image(self):
         pixmap = self.pil2qpixmap()
@@ -111,12 +117,3 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
             convEdit = convolution.Convolution(self.__image_file)
             self.__image_file = convEdit.image_data
             self.show_image()
-        
-    @property
-    def image_file(self): 
-        return self.__image_file
-
-    @image_file.setter
-    def image_file(self, value):
-        self.__image_file = value
-

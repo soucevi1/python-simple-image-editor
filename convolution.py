@@ -1,22 +1,27 @@
 #!/usr/bin/env python3
 
 from PIL import Image
+import numpy as np
+import convolution_editor as ce
 from PyQt4.QtGui import *
 from PyQt4 import uic, QtGui
-import numpy as np
-import sys
-import time
-import convolution_editor as ce
 
-
+# Class that represents the convolution editor
 class Convolution:
 
+    # Empty constructor
     def __init__(self):
         self.image_data = None
         self.maskLine = []
         self.mask = []
         
+    # Constructor with img argument    
     def __init__(self, img):
+        """
+        The constructor creates a special window containing
+        9 text slots and a few radio buttons with preset values
+        The input to text slots is float in that is up to 3 characters long.
+        """
         self.image_data = img
         self.conv_window = ce.Convolution_editor()
 
@@ -48,6 +53,7 @@ class Convolution:
         self.conv_window.convOKButton.clicked.connect(self.convolution_adjust)
         self.conv_window.exec_()
   
+    # Sharpen preset
     def setSharpen(self):
         self.maskLine[0].setText("0")
         self.maskLine[1].setText("-1")
@@ -59,6 +65,7 @@ class Convolution:
         self.maskLine[7].setText("-1")
         self.maskLine[8].setText("0")
 
+    # Simple Edge Detection preset
     def setSimpleEdge(self):
         self.maskLine[0].setText("0")
         self.maskLine[1].setText("1")
@@ -70,6 +77,7 @@ class Convolution:
         self.maskLine[7].setText("1")
         self.maskLine[8].setText("0")
         
+    # Edge detection preset
     def setEdge(self):
         self.maskLine[0].setText("1")
         self.maskLine[1].setText("1")
@@ -81,6 +89,7 @@ class Convolution:
         self.maskLine[7].setText("1")
         self.maskLine[8].setText("1")
         
+    # Blur preset
     def setBlur(self):
         self.maskLine[0].setText("0")
         self.maskLine[1].setText("0.2")
@@ -92,6 +101,7 @@ class Convolution:
         self.maskLine[7].setText("0.2")
         self.maskLine[8].setText("0")
         
+    # Excessive Edges preset
     def setExcessive(self):
         self.maskLine[0].setText("1")
         self.maskLine[1].setText("1")
@@ -103,6 +113,7 @@ class Convolution:
         self.maskLine[7].setText("1")
         self.maskLine[8].setText("1")
         
+    # Emboss preset
     def setEmboss(self):
         self.maskLine[0].setText("-1")
         self.maskLine[1].setText("-1")
@@ -114,12 +125,17 @@ class Convolution:
         self.maskLine[7].setText("1")
         self.maskLine[8].setText("1")        
 
+    # Method that applies the convolution mask
     def convolution_adjust(self):
+        """
+        The method applies the convolution mask using Numpy broadcasting.
+        All the 9 parts of the mask are applied simultaneously to the whole input array
+        The output is then converted to uint8 in order to prevent pixel overflowing
+        """
         img = self.image_data
         data = np.asarray(img)
-        rows, cols, colors = data.shape        
-        cut = slice(1,-1), slice(1,-1)        
-        data_real = data[cut]        
+        
+        data_out = np.empty(data.shape, dtype=np.uint16)
         
         self.mask = []
         for i in range(9):

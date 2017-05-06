@@ -12,6 +12,8 @@ app = QtGui.QApplication(sys.argv)
 window = editor.Editor()
 window.show()
 window.actionOpen.triggered.connect(window.open_file)
+window.actionSave.triggered.connect(window.save_file)
+window.actionSaveAs.triggered.connect(window.save_file_as)
 
 window.actionRotateLeft.triggered.connect(window.turn_left)
 window.actionRotateRight.triggered.connect(window.turn_right)

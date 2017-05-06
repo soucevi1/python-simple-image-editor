@@ -1,10 +1,7 @@
 #!/usr/bin/env python3
 
-import sys
 from PyQt4.QtGui import *
 from PyQt4 import uic, QtGui
-from PIL import Image
-from PIL.ImageQt import ImageQt
 
 qtCreatorFile = "brightness_slider.ui"
  

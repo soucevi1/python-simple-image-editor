@@ -4,17 +4,22 @@ from PIL import Image
 from PyQt4.QtGui import *
 from PyQt4 import uic, QtGui
 import numpy as np
-import sys
-import time
 import crop_editor as ce
 
-
+# Class that represents the crop editor
 class Crop:
 
+    # Empty constructor
     def __init__(self):
         self.image_data = None
         
+    # Constructor with img argument
     def __init__(self, img):
+        """
+        The constructor takes PIL Image array as argument.
+        It creates a special window containing four text input fields
+        It also displays the current image size
+        """
         self.image_data = img
         self.crop_window = ce.Crop_editor()
 
@@ -40,7 +45,14 @@ class Crop:
         self.crop_window.cropOKButton.clicked.connect(self.input_check)
         self.crop_window.exec_()
 
+    # Method that verifies the input
     def input_check(self):
+        """
+        The method checks whether the text boxes are empty, 
+        whether the top-left corner coordinates are in the array bounds,
+        whether the new size is at least one pixel
+        and whether the whole crop area is within the array bounds.
+        """
         self.row = self.rowLine.text()
         if self.row == '':
             self.errLabel.setText("Row box cannot be empty")
@@ -81,8 +93,13 @@ class Crop:
         else:
             self.crop_adjust()
             
-
+    # Method that applies the given crop area
     def crop_adjust(self):
+        """
+        The method creates a crop out of the original picture.
+        It takes the coordinates of top-left corner of the crop area 
+        and the size of the desired crop area.
+        """
         img = self.image_data
         data = np.asarray(img)
         
@@ -90,31 +107,5 @@ class Crop:
         
         data_out = data[self.row:self.row+self.numRows:, self.col:self.col+self.numCols:, :]
 
-        data_out = np.asarray(data_out, dtype=np.uint8)
         self.image_data = Image.fromarray(data_out, 'RGB')
         self.crop_window.accept()
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
