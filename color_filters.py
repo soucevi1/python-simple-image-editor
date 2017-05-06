@@ -40,7 +40,7 @@ class Custom:
     def __init__(self):
         self.image_data = None
         
-    def custom_initialize(self, img):
+    def __init__(self, img):
         self.image_data = img
         self.custom_cf_window = cce.Custom_editor()
 
@@ -66,7 +66,7 @@ class Custom:
     
     def custom_adjust(self):
         img = self.image_data
-        data = np.asarray(img)
+        data = np.asarray(img, dtype = np.uint16)
         data_out = np.empty(data.shape)
         
         data_out[::, ::, 0] = data[::, ::, 0] + self.redValue 

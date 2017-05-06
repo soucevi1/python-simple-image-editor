@@ -8,11 +8,6 @@ import sys
 import time
 import convolution_editor as ce
 
-# uzivatel zada cislo, kolikrat se obrazek zmensi
-# cislo se pote prepocita na koeficient, ktery rekne, kolikaty pixel se vzdy ma vynechat
-# prepocet: pokud se ma obrazek zmensit na n/m puvodni velikosti
-#   n pixelu nechat, (m-n) pixelu vzit
-
 
 class Convolution:
 
@@ -21,11 +16,14 @@ class Convolution:
         self.maskLine = []
         self.mask = []
         
-    def convolution_initialize(self, img):
+    def __init__(self, img):
         self.image_data = img
         self.conv_window = ce.Convolution_editor()
 
         self.validator = QtGui.QDoubleValidator(-99, 99, 2)
+        
+        self.mask = []
+        self.maskLine = []
         
         self.maskLine.append(self.conv_window.convMask1)
         self.maskLine.append(self.conv_window.convMask2)
@@ -123,6 +121,7 @@ class Convolution:
         cut = slice(1,-1), slice(1,-1)        
         data_real = data[cut]        
         
+        self.mask = []
         for i in range(9):
             self.mask.append(float(self.maskLine[i].text()))
         

@@ -79,7 +79,9 @@
     </widget>
     <addaction name="actionResize"/>
     <addaction name="menuFlip"/>
+    <addaction name="actionCrop"/>
     <addaction name="menuRotate"/>
+    <addaction name="separator"/>
     <addaction name="actionBrightness"/>
     <addaction name="actionConvolution"/>
     <addaction name="menuColorFilters"/>
@@ -161,6 +163,11 @@
   <action name="actionColorFiltersCustom">
    <property name="text">
     <string>Custom</string>
+   </property>
+  </action>
+  <action name="actionCrop">
+   <property name="text">
+    <string>Crop</string>
    </property>
   </action>
  </widget>

@@ -19,7 +19,7 @@ class Shrink:
     def __init__(self):
         self.image_data = None
         
-    def shrink_initialize(self, img):
+    def __init__(self, img):
         self.image_data = img
         self.shrink_window = se.Shrink_editor()
 

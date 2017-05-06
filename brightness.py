@@ -15,7 +15,7 @@ class Brightness:
         self.value = 0
         self.slider = None
 
-    def brightness_initialize(self, img):
+    def __init__(self, img):
         self.image_data = img
         self.brightness_window = be.Brightness_editor()
         self.slider = self.brightness_window.horizontalBrightnessSlider 

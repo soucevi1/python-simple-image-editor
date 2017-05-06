@@ -6,11 +6,11 @@ from PyQt4 import uic, QtGui
 from PIL import Image
 from PIL.ImageQt import ImageQt
 
-qtCreatorFile = "brightness_slider.ui"
+qtCreatorFile = "crop_window.ui"
  
 Ui_Dialog, QtBaseClass = uic.loadUiType(qtCreatorFile)
  
-class Brightness_editor(QtGui.QDialog, Ui_Dialog):
+class Crop_editor(QtGui.QDialog, Ui_Dialog):
     def __init__(self):
         QtGui.QDialog.__init__(self)
         Ui_Dialog.__init__(self)

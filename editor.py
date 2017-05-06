@@ -13,6 +13,8 @@ import shrink
 import shrink_editor as se
 import convolution
 import convolution_editor as ce
+import crop_editor as cropEd
+import crop
 import color_filters as cf
 
 # zobrazeni hlavniho okna programu
@@ -34,8 +36,9 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         file_dialog.setNameFilters(["Images (*.bmp *.png *.jpg)"])
         w = QWidget()
         self.__filename = file_dialog.getOpenFileName(w, 'Open File', '~')
-        self.__image_file = Image.open(self.__filename)
-        self.show_image()
+        if self.__filename != '':
+            self.__image_file = Image.open(self.__filename)
+            self.show_image()
 
     def show_image(self):
         pixmap = self.pil2qpixmap()
@@ -50,52 +53,64 @@ class Editor(QtGui.QMainWindow, Ui_MainWindow):
         return pix
 
     def turn_left(self):
-       	self.__image_file = turn.turn_image_left(self.__image_file)
-        self.show_image()
+        if self.__image_file != None:
+           	self.__image_file = turn.turn_image_left(self.__image_file)
+           	self.show_image()
     
     def turn_right(self):
-        self.__image_file = turn.turn_image_right(self.__image_file)
-        self.show_image()
+        if self.__image_file != None:
+            self.__image_file = turn.turn_image_right(self.__image_file)
+            self.show_image()
         
     def flip_horizontal(self):
-        self.__image_file = flip.flip_horizontal(self.__image_file)
-        self.show_image()
+        if self.__image_file != None:
+            self.__image_file = flip.flip_horizontal(self.__image_file)
+            self.show_image()
 
     def flip_vertical(self):
-        self.__image_file = flip.flip_vertical(self.__image_file)
-        self.show_image()
+        if self.__image_file != None:
+            self.__image_file = flip.flip_vertical(self.__image_file)
+            self.show_image()
+    
+    def crop(self):
+        if self.__image_file != None:
+            cropEdit = crop.Crop(self.__image_file)
+            self.__image_file = cropEdit.image_data
+            self.show_image()
         
     def filter_greyscale(self):
-        self.__image_file = cf.greyscale(self.__image_file)
-        self.show_image()
+        if self.__image_file != None:
+            self.__image_file = cf.greyscale(self.__image_file)
+            self.show_image()
         
     def filter_invert(self):
-        self.__image_file = cf.invert(self.__image_file)
-        self.show_image()
+        if self.__image_file != None:
+            self.__image_file = cf.invert(self.__image_file)
+            self.show_image()
         
     def filter_custom(self):
-        cfCustomEdit = cf.Custom()
-        cfCustomEdit.custom_initialize(self.__image_file)
-        self.__image_file = cfCustomEdit.image_data
-        self.show_image()
+        if self.__image_file != None:
+            cfCustomEdit = cf.Custom(self.__image_file)
+            self.__image_file = cfCustomEdit.image_data
+            self.show_image()
         
     def brightness(self):
-        brEdit = brightness.Brightness()
-        brEdit.brightness_initialize(self.__image_file)
-        self.__image_file = brEdit.image_data
-        self.show_image()
+        if self.__image_file != None:
+            brEdit = brightness.Brightness(self.__image_file)
+            self.__image_file = brEdit.image_data
+            self.show_image()
         
     def shrink(self):
-        shEdit = shrink.Shrink()
-        shEdit.shrink_initialize(self.__image_file)
-        self.__image_file = shEdit.image_data
-        self.show_image()
+        if self.__image_file != None:
+            shEdit = shrink.Shrink(self.__image_file)
+            self.__image_file = shEdit.image_data
+            self.show_image()
         
     def convolution(self):
-        convEdit = convolution.Convolution()
-        convEdit.convolution_initialize(self.__image_file)
-        self.__image_file = convEdit.image_data
-        self.show_image()
+        if self.__image_file != None:
+            convEdit = convolution.Convolution(self.__image_file)
+            self.__image_file = convEdit.image_data
+            self.show_image()
         
     @property
     def image_file(self): 
