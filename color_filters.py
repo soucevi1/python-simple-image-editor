@@ -7,11 +7,13 @@ import custom_cf_editor as cce
 # Function that converts image to greyscale
 def greyscale(img):    
     """
+    The function converts the PIL Image to Numpy array.
     The color compounds are multiplied by magical constants 
     that repersent weights of the colors as perceived by the human eye.
     All the compounds are then added together.
     The output data is then converted to RGB in order to be compatible 
     with the rest of the program.
+    At last the output is converted back to PIL Image.
     """
     data = np.asarray(img)
     data_out = [0.299, 0.587, 0.114] * data
@@ -24,8 +26,10 @@ def greyscale(img):
 # Function that inverts the colors of the image    
 def invert(img):
     """
-    The function substracts all the color compounds from 255. 
+    The function converts the PIL Image to Numpy array.
+    It substracts all the color compounds from 255. 
     This means that all the pixels have the opposite color than they had before.
+    The output is converted back to PIL Image
     """
     data = np.asarray(img)
     data_out = 255 - data
@@ -58,7 +62,8 @@ class Custom:
     # Constructor with img argument
     def __init__(self, img):
         """
-        The constructor creates a special window containing three sliders for R, G and B.
+        The constructor takes PIL Image as an argument. 
+        It creates a special window containing three sliders for R, G and B.
         It also connects the appropriate functions to them.
         """
         self.image_data = img
@@ -88,10 +93,12 @@ class Custom:
     # Method that applies the custom color filter
     def custom_adjust(self):
         """
-        The method uses values read from the sliders.
+        The method converts the PIL Image to Numpy array.
+        It uses values read from the sliders.
         These values are then added to the corresponding color 
-        compounds contained in the input data
+        compounds contained in the input data.
         The output is then converted to uint8 in order to prevent overflowing of the pixels
+        and then back to PIL Image
         """
         img = self.image_data
         data = np.asarray(img, dtype = np.uint16)

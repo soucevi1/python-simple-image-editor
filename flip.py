@@ -6,8 +6,9 @@ from PIL import Image
 # Function that flips the image using its horizontal axis
 def flip_horizontal(img):
     """
-    The function takes the original picture, 
-    reverts its columns and uses it as a new row in the output
+    The function takes the original PIL Image, converts it to Numpy array, 
+    reverts its columns and uses it as a new rows in the output. Then it converts the output
+    back to PIL Image
     """
     data = np.asarray(img)
     rows, cols, colors = data.shape
@@ -21,8 +22,9 @@ def flip_horizontal(img):
 # Function that flips the image using its vertical axis
 def flip_vertical(img):    
     """
-    The function takes the original image and
-    reverts its rows.
+    The function takes the original PIL Image, converts it to Numpy array, 
+    reverts its rows and uses it as a new columns in the output. Then it converts the output
+    back to PIL Image
     """
     data = np.asarray(img)
     rows, cols, colors = data.shape

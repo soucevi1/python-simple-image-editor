@@ -4,22 +4,26 @@ from PIL import Image
 from PyQt4.QtGui import *
 from PyQt4 import uic, QtGui
 import numpy as np
-import sys
-import time
 import shrink_editor as se
 
-# uzivatel zada cislo, kolikrat se obrazek zmensi
-# cislo se pote prepocita na koeficient, ktery rekne, kolikaty pixel se vzdy ma vynechat
-# prepocet: pokud se ma obrazek zmensit na n/m puvodni velikosti
-#   n pixelu nechat, (m-n) pixelu vzit
 
-
+# Class that represents the shrinking editor
 class Shrink:
 
+    # Empty constructor
     def __init__(self):
         self.image_data = None
         
+    # Constructor with the argument img    
     def __init__(self, img):
+        """
+        Constructor takes PIL Image data as an argument.
+        It creates a special window that contains two text input fields.
+        The upper field takes the numerator and the lower one takes the denominator.
+        Nominator and denominator are then used to form a fraction. This fraction
+        represents the new size of the image. The numerator cannot be higher than the 
+        denominator. Neither of them can be zero.
+        """
         self.image_data = img
         self.shrink_window = se.Shrink_editor()
 
@@ -35,6 +39,7 @@ class Shrink:
         self.shrink_window.resizeOKButton.clicked.connect(self.input_check)
         self.shrink_window.exec_()
 
+    # Method that verifies the input
     def input_check(self):
         self.num = int(self.numeratorLine.text())
         self.denom = int(self.denominatorLine.text())
@@ -47,8 +52,18 @@ class Shrink:
         else:
             self.shrink_adjust()
             
-
+    # Method that edits the size of the picture
     def shrink_adjust(self):
+        """
+        The method converts PIL Image to Numpy array.
+        With the nominator (NOM) and denominator (DEN) read from the user, 
+        it divides the rows and columns to groups of DEN pixels and always assigns
+        first NOM pixels of every group to the output.
+        Note that this means that although 1/2 and 49/98 are the same number, the output of both
+        is different.
+        At first, the method counts the indexes of the pixels that will be assigned to the output.
+        Then it copies the pixels to the output array and converts it back to PIL Image
+        """
         img = self.image_data
         data = np.asarray(img)
         rows, cols, colors = data.shape

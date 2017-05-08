@@ -18,9 +18,10 @@ class Convolution:
     # Constructor with img argument    
     def __init__(self, img):
         """
-        The constructor creates a special window containing
-        9 text slots and a few radio buttons with preset values
-        The input to text slots is float in that is up to 3 characters long.
+        The constructor takes the PIL Image data as an arguments. 
+        It creates a special window containing 9 text slots and a few 
+        radio buttons with preset values.
+        The input allowed to the text slots is float that is up to 3 characters long.
         """
         self.image_data = img
         self.conv_window = ce.Convolution_editor()
@@ -128,9 +129,11 @@ class Convolution:
     # Method that applies the convolution mask
     def convolution_adjust(self):
         """
-        The method applies the convolution mask using Numpy broadcasting.
+        The method converts the PIL Image to Numpy uint16 array.
+        It applies the convolution mask using Numpy broadcasting.
         All the 9 parts of the mask are applied simultaneously to the whole input array
-        The output is then converted to uint8 in order to prevent pixel overflowing
+        The output is then converted to uint8 in order to prevent pixel overflowing and
+        then back to PIL Image.
         """
         img = self.image_data
         data = np.asarray(img)

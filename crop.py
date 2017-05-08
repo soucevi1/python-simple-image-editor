@@ -37,7 +37,7 @@ class Crop:
                 
         self.actCols, self.actRows = self.image_data.size
         
-        self.crop_window.cropSizeLabel.setText("Current image size:" + str(self.actCols) + " x " + str(self.actRows))
+        self.crop_window.cropSizeLabel.setText("Current image size: " + str(self.actCols) + " x " + str(self.actRows))
         
         self.errLabel = self.crop_window.errorCropLabel
         self.errLabel.setStyleSheet('color: red')
@@ -96,9 +96,11 @@ class Crop:
     # Method that applies the given crop area
     def crop_adjust(self):
         """
-        The method creates a crop out of the original picture.
-        It takes the coordinates of top-left corner of the crop area 
+        The method converts the PIL Image data to Numpy array.
+        It creates a crop out of the original picture.
+        Then it takes the coordinates of top-left corner of the crop area 
         and the size of the desired crop area.
+        At last it converts the Numpy array to PIL Image
         """
         img = self.image_data
         data = np.asarray(img)

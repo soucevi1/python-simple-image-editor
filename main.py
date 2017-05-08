@@ -7,10 +7,14 @@ import editor
 
 
 
-
+# Create Qt application
 app = QtGui.QApplication(sys.argv)
+
+# Create the main window
 window = editor.Editor()
 window.show()
+
+# Connect the Editor methods to the buttons of the main window
 window.actionOpen.triggered.connect(window.open_file)
 window.actionSave.triggered.connect(window.save_file)
 window.actionSaveAs.triggered.connect(window.save_file_as)
@@ -33,6 +37,6 @@ window.actionResize.triggered.connect(window.shrink)
 
 window.actionConvolution.triggered.connect(window.convolution)
 
-
+# Execute the Qt application
 sys.exit(app.exec_())
 
